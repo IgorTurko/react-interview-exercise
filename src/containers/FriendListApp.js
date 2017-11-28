@@ -2,36 +2,57 @@ import React, { Component } from 'react';
 import styles from './FriendListApp.css';
 import { connect } from 'react-redux';
 
-import {addFriend, deleteFriend, starFriend} from '../actions/FriendsActions';
-import { FriendList, AddFriendInput } from '../components';
+import { addFriend, deleteFriend, starFriend } from '../actions/FriendsActions';
+import { setPage } from '../actions/PaginationActions';
+import { FriendList, AddFriendInput, Pagination } from '../components';
 
 class FriendListApp extends Component {
 
   render () {
-    const { friendlist: { friendsById }} = this.props;
+    const { 
+      friends,
+      friendsByPage, 
+      currentPage, 
+      pageSize 
+    } = this.props;
 
     const actions = {
       addFriend: this.props.addFriend,
       deleteFriend: this.props.deleteFriend,
-      starFriend: this.props.starFriend
+      starFriend: this.props.starFriend,
+      setPage: this.props.setPage
     };
 
     return (
       <div className={styles.friendListApp}>
         <h1>The FriendList</h1>
         <AddFriendInput addFriend={actions.addFriend} />
-        <FriendList friends={friendsById} actions={actions} />
+        <FriendList 
+          friends={friendsByPage} 
+          actions={actions} />
+        <Pagination 
+          currentPage={currentPage} 
+          pageSize={pageSize} 
+          totalCount={friends.length} 
+          onChangePage={actions.setPage} />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return state
-}
-
-export default connect(mapStateToProps, {
+export default connect(state => {
+  const { friendlist: { friends, currentPage } } = state;
+  const pageSize = 2;
+  
+  return {
+    friends,
+    currentPage,
+    pageSize,
+    friendsByPage: friends.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  };
+}, {
   addFriend,
   deleteFriend,
-  starFriend
+  starFriend,
+  setPage
 })(FriendListApp)
