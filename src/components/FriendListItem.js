@@ -12,6 +12,24 @@ class FriendListItem extends Component {
           <div>
             <small>xx friends in common</small>
           </div>
+          <div>
+            <label className="radio-inline">
+              <input 
+                type = "radio" 
+                name={`sex_${this.props.id}`}
+                checked={this.props.sex === 'm'}
+                onChange={() => this.props.setFriendSex(this.props.id, 'm')} />
+                Male
+            </label>    
+            <label className="radio-inline">
+              <input 
+                type = "radio" 
+                name={`sex_${this.props.id}`}
+                checked={this.props.sex === 'f'}
+                onChange={() => this.props.setFriendSex(this.props.id, 'f')} />
+                Female
+            </label>
+          </div>
         </div>
         <div className={styles.friendActions}>
           <button className={`btn btn-default ${styles.btnAction}`}
@@ -36,7 +54,9 @@ FriendListItem.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   starred: PropTypes.bool,
-  starFriend: PropTypes.func.isRequired
+  starFriend: PropTypes.func.isRequired,
+  deleteFriend: PropTypes.func.isRequired,
+  setFriendSex: PropTypes.func.isRequired
 };
 
 export default FriendListItem

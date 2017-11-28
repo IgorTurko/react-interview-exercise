@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './FriendListApp.css';
 import { connect } from 'react-redux';
 
-import { addFriend, deleteFriend, starFriend } from '../actions/FriendsActions';
+import { addFriend, deleteFriend, starFriend, setFriendSex } from '../actions/FriendsActions';
 import { setPage } from '../actions/PaginationActions';
 import { FriendList, AddFriendInput, Pagination } from '../components';
 
@@ -20,6 +20,7 @@ class FriendListApp extends Component {
       addFriend: this.props.addFriend,
       deleteFriend: this.props.deleteFriend,
       starFriend: this.props.starFriend,
+      setFriendSex: this.props.setFriendSex,
       setPage: this.props.setPage
     };
 
@@ -54,5 +55,6 @@ export default connect(state => {
   addFriend,
   deleteFriend,
   starFriend,
+  setFriendSex,
   setPage
 })(FriendListApp)

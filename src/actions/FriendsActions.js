@@ -20,3 +20,11 @@ export function starFriend(id) {
     id
   };
 }
+
+export function setFriendSex(id, sex) {
+  return {
+    type: types.SET_FRIEND_SEX,
+    id,
+    sex
+  };
+}

@@ -14,6 +14,7 @@ class FriendList extends Component {
                 id={index}
                 name={friend.name}
                 starred={friend.starred}
+                sex={friend.sex}
                 {...this.props.actions} />
             );
           })

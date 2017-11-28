@@ -36,26 +36,35 @@ class Pagination extends PureComponent {
         return (
             <ul className="pagination">
                 {pager.map((page, index) =>
-                    <li key={index} className={currentPage === page ? 'active' : ''}>
-                        <a onClick={e => {
-                            e.preventDefault();
-                            this.props.onChangePage(page);
-                        }}>
-                            {page}
-                        </a>
-                    </li>
+                    {
+                        return currentPage === page ?
+                            <li key={index} className='page-item active'>
+                                <span className="page-link">
+                                    {page}
+                                </span>
+                            </li>
+                            :
+                            <li key={index} className="page-item">
+                                <a 
+                                    className="page-link" 
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        this.props.onChangePage(page);
+                                    }}> 
+                                    {page}
+                                </a>
+                            </li>
+                    }
                 )}
             </ul>
         );
     }
 }
 
-const propTypes = {
+Pagination.propTypes = {
     pageSize: PropTypes.number,
     totalCount: PropTypes.number,
     currentPage: PropTypes.number,
     onChangePage: PropTypes.func.isRequired
-}
-
-Pagination.propTypes = propTypes;
+};
 export default Pagination;
