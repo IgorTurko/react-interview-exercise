@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes';
+import * as friendList from '../constants/FriendList';
 
 const initialState = {
   currentPage: 1,
@@ -41,11 +42,16 @@ export default function friends(state = initialState, action) {
     }
     case types.DELETE_FRIEND:
     {
-      const friends = state.friends.map(e => ({...e}));
+      const friends = state.friends
+        .map(e => ({...e}))
+        .filter(item => item.id !== action.id);
+      
+      const totalPages = Math.ceil(friends.length / friendList.PAGE_SIZE);
 
       return {
         ...state,
-        friends: friends.filter(item => item.id !== action.id)
+        currentPage: totalPages < state.currentPage ? totalPages : state.currentPage,
+        friends
       };
     }
     case types.STAR_FRIEND:

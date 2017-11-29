@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 
 import { addFriend, deleteFriend, starFriend, setFriendSex, setPage } from '../actions';
 import { FriendList, AddFriendInput, Pagination } from '../components';
+import * as friendList from '../constants/FriendList';
 
 class FriendListApp extends Component {
 
   render () {
     const { 
-      friends,
       friendsByPage, 
+      totalPages,
       currentPage, 
       pageSize 
     } = this.props;
@@ -33,7 +34,7 @@ class FriendListApp extends Component {
         <Pagination 
           currentPage={currentPage} 
           pageSize={pageSize} 
-          totalCount={friends.length} 
+          totalPages={totalPages} 
           onChangePage={actions.setPage} />
       </div>
     );
@@ -41,17 +42,12 @@ class FriendListApp extends Component {
 }
 
 export default connect(state => {
-  const pageSize = 2;
+  const pageSize = friendList.PAGE_SIZE;
   let { friendlist: { friends, currentPage } } = state;
   const totalPages = Math.ceil(friends.length / pageSize);
- 
-
-  if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
 
   return {
-    friends,
+    totalPages,
     currentPage,
     pageSize,
     friendsByPage: friends.slice((currentPage - 1) * pageSize, currentPage * pageSize)

@@ -3,9 +3,7 @@ import styles from './Pagination.css';
 
 export default class Pagination extends PureComponent {
 
-    getPager = (pageSize, totalCount, currentPage) => {
-        const totalPages = Math.ceil(totalCount/pageSize);
-        
+    getPager = (pageSize, totalPages, currentPage) => {
         if (totalPages < 2) {
             return null;
         }
@@ -36,8 +34,8 @@ export default class Pagination extends PureComponent {
     }
 
     render() {
-        const { pageSize, totalCount, currentPage, onChangePage } = this.props;
-        const pager = this.getPager(pageSize, totalCount, currentPage);
+        const { pageSize, totalPages, currentPage, onChangePage } = this.props;
+        const pager = this.getPager(pageSize, totalPages, currentPage);
 
         if (!pager) {
             return null;
@@ -73,7 +71,7 @@ export default class Pagination extends PureComponent {
 
 Pagination.propTypes = {
     pageSize: PropTypes.number,
-    totalCount: PropTypes.number,
+    totalPages: PropTypes.number,
     currentPage: PropTypes.number,
     onChangePage: PropTypes.func.isRequired
 };
