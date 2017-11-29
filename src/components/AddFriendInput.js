@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import styles from './AddFriendInput.css';
 
-class AddFriendInput extends Component {
+export default class AddFriendInput extends Component {
 
   render () {
     return (
@@ -41,5 +41,3 @@ class AddFriendInput extends Component {
 AddFriendInput.propTypes = {
   addFriend: PropTypes.func.isRequired
 };
-
-export default AddFriendInput

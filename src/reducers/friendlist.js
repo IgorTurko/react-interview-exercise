@@ -48,10 +48,12 @@ export default function friends(state = initialState, action) {
     }
     case types.STAR_FRIEND:
     {
-      console.log(action.id)
-      let friends = [...state.friends];
-      let friend = friends.find(item => item.id === action.id);
-      friend.starred = !friend.starred;
+      const friends = state.friends.map(e => ({...e}));
+      const friend = friends.find(item => item.id === action.id);
+
+      if (friend) {
+        friend.starred = !friend.starred;
+      }
       return {
         ...state,
         friends
@@ -59,9 +61,12 @@ export default function friends(state = initialState, action) {
     }
     case types.SET_FRIEND_SEX:
     {
-      let friends = [...state.friends];
-      let friend = friends.find(item => item.id === action.id);
-      friend.sex = action.sex;
+      const friends = state.friends.map(e => ({...e}));
+      const friend = friends.find(item => item.id === action.id);
+
+      if (friend) {
+        friend.sex = action.sex;
+      }
       return {
         ...state,
         friends

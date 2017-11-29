@@ -1,12 +1,11 @@
 import React, { PureComponent, PropTypes } from 'react';
 import styles from './Pagination.css';
 
-class Pagination extends PureComponent {
+export default class Pagination extends PureComponent {
 
-    render() {
-        const { pageSize, totalCount, currentPage, onChangePage } = this.props;
+    getPager = (pageSize, totalCount, currentPage) => {
         const totalPages = Math.ceil(totalCount/pageSize);
-
+        
         if (totalPages < 2) {
             return null;
         }
@@ -33,9 +32,15 @@ class Pagination extends PureComponent {
             pager.push(i);
         }
 
+        return pager;
+    }
+
+    render() {
+        const { pageSize, totalCount, currentPage, onChangePage } = this.props;
+
         return (
             <ul className="pagination">
-                {pager.map((page, index) =>
+                {this.getPager(pageSize, totalCount, currentPage).map((page, index) =>
                     {
                         return currentPage === page ?
                             <li key={index} className='page-item active'>
@@ -67,4 +72,3 @@ Pagination.propTypes = {
     currentPage: PropTypes.number,
     onChangePage: PropTypes.func.isRequired
 };
-export default Pagination;

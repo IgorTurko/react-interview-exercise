@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styles from './FriendListApp.css';
 import { connect } from 'react-redux';
 
-import { addFriend, deleteFriend, starFriend, setFriendSex } from '../actions/FriendsActions';
-import { setPage } from '../actions/PaginationActions';
+import { addFriend, deleteFriend, starFriend, setFriendSex, setPage } from '../actions';
 import { FriendList, AddFriendInput, Pagination } from '../components';
 
 class FriendListApp extends Component {

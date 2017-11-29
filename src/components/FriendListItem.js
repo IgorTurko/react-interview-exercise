@@ -2,15 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import styles from './FriendListItem.css';
 
-class FriendListItem extends Component {
+export default class FriendListItem extends Component {
 
   render() {
     return (
       <li className={styles.friendListItem}>
         <div className={styles.friendInfos}>
-          <div><span>{this.props.name}</span></div>
           <div>
-            <small>xx friends in common</small>
+            <span>{this.props.name}</span>
           </div>
           <div>
             <label className="radio-inline">
@@ -58,5 +57,3 @@ FriendListItem.propTypes = {
   deleteFriend: PropTypes.func.isRequired,
   setFriendSex: PropTypes.func.isRequired
 };
-
-export default FriendListItem

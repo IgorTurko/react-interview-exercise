@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from './FriendList.css';
 import FriendListItem from './FriendListItem';
 
-class FriendList extends Component {
+export default class FriendList extends Component {
   render () {
     return (
       <ul className={styles.friendList}>
@@ -11,10 +11,7 @@ class FriendList extends Component {
             return (
               <FriendListItem
                 key={friend.id}
-                id={friend.id}
-                name={friend.name}
-                starred={friend.starred}
-                sex={friend.sex}
+                {...friend}
                 {...this.props.actions} />
             );
           })
@@ -29,5 +26,3 @@ FriendList.propTypes = {
   friends: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
-
-export default FriendList;
