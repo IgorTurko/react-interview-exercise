@@ -41,9 +41,15 @@ class FriendListApp extends Component {
 }
 
 export default connect(state => {
-  const { friendlist: { friends, currentPage } } = state;
   const pageSize = 2;
+  const totalPages = Math.ceil(friends.length / pageSize);
+  let { friendlist: { friends, currentPage } } = state;
   
+
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+
   return {
     friends,
     currentPage,

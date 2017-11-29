@@ -37,10 +37,15 @@ export default class Pagination extends PureComponent {
 
     render() {
         const { pageSize, totalCount, currentPage, onChangePage } = this.props;
+        const pager = this.getPager(pageSize, totalCount, currentPage);
+
+        if (!pager) {
+            return null;
+        }
 
         return (
             <ul className="pagination">
-                {this.getPager(pageSize, totalCount, currentPage).map((page, index) =>
+                {pager.map((page, index) =>
                     {
                         return currentPage === page ?
                             <li key={index} className='page-item active'>
