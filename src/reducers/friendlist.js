@@ -4,16 +4,19 @@ const initialState = {
   currentPage: 1,
   friends: [
     {
+      id: 0,
       name: 'Theodore Roosevelt',
       starred: true,
       sex: "m",
     },
     {
+      id: 1,
       name: 'Abraham Lincoln',
       starred: false,
       sex: "f",
     },
     {
+      id: 2,
       name: 'George Washington',
       starred: false,
       sex: "m",
@@ -30,6 +33,7 @@ export default function friends(state = initialState, action) {
         friends: [
           ...state.friends,
           {
+            id: action.id,
             name: action.name
           }
         ],
@@ -39,13 +43,14 @@ export default function friends(state = initialState, action) {
     {
       return {
         ...state,
-        friends: state.friends.filter((item, index) => index !== action.id)
+        friends: state.friends.filter(item => item.id !== action.id)
       };
     }
     case types.STAR_FRIEND:
     {
+      console.log(action.id)
       let friends = [...state.friends];
-      let friend = friends.find((item, index) => index === action.id);
+      let friend = friends.find(item => item.id === action.id);
       friend.starred = !friend.starred;
       return {
         ...state,
@@ -55,7 +60,7 @@ export default function friends(state = initialState, action) {
     case types.SET_FRIEND_SEX:
     {
       let friends = [...state.friends];
-      let friend = friends.find((item, index) => index === action.id);
+      let friend = friends.find(item => item.id === action.id);
       friend.sex = action.sex;
       return {
         ...state,

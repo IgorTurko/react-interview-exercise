@@ -1,8 +1,11 @@
 import * as types from '../constants/ActionTypes';
 
+let nextId = -1;
+
 export function addFriend(name) {
   return {
     type: types.ADD_FRIEND,
+    id: nextId--,
     name
   };
 }

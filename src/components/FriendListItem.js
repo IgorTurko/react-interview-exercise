@@ -15,7 +15,7 @@ class FriendListItem extends Component {
           <div>
             <label className="radio-inline">
               <input 
-                type = "radio" 
+                type="radio" 
                 name={`sex_${this.props.id}`}
                 checked={this.props.sex === 'm'}
                 onChange={() => this.props.setFriendSex(this.props.id, 'm')} />
@@ -23,7 +23,7 @@ class FriendListItem extends Component {
             </label>    
             <label className="radio-inline">
               <input 
-                type = "radio" 
+                type="radio" 
                 name={`sex_${this.props.id}`}
                 checked={this.props.sex === 'f'}
                 onChange={() => this.props.setFriendSex(this.props.id, 'f')} />

@@ -49,7 +49,7 @@ class Pagination extends PureComponent {
                                     className="page-link" 
                                     onClick={e => {
                                         e.preventDefault();
-                                        this.props.onChangePage(page);
+                                        onChangePage(page);
                                     }}> 
                                     {page}
                                 </a>
