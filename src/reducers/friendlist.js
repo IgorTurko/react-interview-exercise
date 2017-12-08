@@ -46,7 +46,7 @@ export default function friends(state = initialState, action) {
         .map(e => ({...e}))
         .filter(item => item.id !== action.id);
       
-      const totalPages = Math.ceil(friends.length / friendList.PAGE_SIZE);
+      const totalPages = Math.ceil(friends.length / friendList.PAGE_SIZE) || 1;
 
       return {
         ...state,
